@@ -20,7 +20,12 @@ neighbor(X, Y, X, Y-1) :- cell(X, Y), cell(X, Y-1).
 
 % Inicial es una sola fija de cada color
 1{start_b(X, Y) : _drawcircle(X, Y, black)}1.
-1{start_w(X, Y) : _drawcircle(X, Y, white)}1.
+:- start_b(X, Y), _drawcircle(X1, Y1, black), X1 < X.
+:- start_b(X, Y), _drawcircle(X, Y1, black), Y1 < Y.
+
+1 { start_w(X, Y) : _drawcircle(X, Y, white) } 1.
+:- start_w(X, Y), _drawcircle(X1, Y1, white), X1 < X.
+:- start_w(X, Y), _drawcircle(X, Y1, white), Y1 < Y.
 
 % Conectividad para celdas negras
 reachable_b(X, Y) :- start_b(X, Y).
