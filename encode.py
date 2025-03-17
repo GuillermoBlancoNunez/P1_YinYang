@@ -4,8 +4,8 @@ def txt_to_lp(archivo_txt, archivo_lp):
     try:
         # Leer el contenido del archivo y guardar cada línea en una lista
         with open(archivo_txt, "r", encoding="utf-8") as archivo_entrada:
-            # Se elimina el salto de línea final de cada línea
-            lista_lineas = [linea.rstrip("\n") for linea in archivo_entrada]
+            # Se elimina el salto de línea final de cada línea y se eliminan las líneas vacías
+            lista_lineas = [linea.rstrip("\n") for linea in archivo_entrada if linea.strip()]
         
         # Escribir la lista en el archivo .lp
         with open(archivo_lp, "w", encoding="utf-8") as s:
@@ -18,14 +18,14 @@ def txt_to_lp(archivo_txt, archivo_lp):
                         s.write(f"_drawcircle({str(i)},{str(j)},white).\n")
         
     except FileNotFoundError:
-        print(f"❌ Error: El archivo '{archivo_txt}' no se encontró.")
+        print(f"Error: El archivo '{archivo_txt}' no se encontró.")
     except Exception as e:
-        print(f"❌ Ocurrió un error inesperado: {e}")
+        print(f"Ocurrió un error inesperado: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("❌ Uso incorrecto. Ejemplo:")
-        print("   python3 encode.py dom02.txt dom02.lp")
+        print("Entrada incorrecta. Ejemplo:")
+        print("   python encode.py dom02.txt dom02.lp")
     else:
         archivo_txt = sys.argv[1]
         archivo_lp = sys.argv[2]
