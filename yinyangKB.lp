@@ -4,7 +4,7 @@ cell(X, Y) :- size(N), X = 1..N, Y = 1..N.
 % Cada celda solo puede ser o negra o blanca, ni ambas ni ninguna.
 { color(X, Y, b); color(X, Y, w) } = 1 :- cell(X, Y).
 
-% Si una celda está fija en la entrada, se asigna directamente.
+% Asignar celdas fijas (definir en instance.lp)
 color(X, Y, C) :- fixed(X, Y, C).
 
 % Definir vecinos ortogonales
@@ -17,9 +17,9 @@ neighbor(X, Y, X, Y-1) :- cell(X, Y), cell(X, Y-1).
 
 
 
-% Inicial es una fija de cada color
-start_b(X, Y) :- fixed(X, Y, b).
-start_w(X, Y) :- fixed(X, Y, w).
+% Inicial es una sola fija de cada color
+{start_b(X, Y) : fixed(X, Y, b)} = 1.
+{start_w(X, Y) : fixed(X, Y, w)} = 1.
 
 % Conectividad para celdas negras
 reachable_b(X, Y) :- start_b(X, Y).
