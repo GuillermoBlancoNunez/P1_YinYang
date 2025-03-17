@@ -43,5 +43,6 @@ reachable_w(X1, Y1) :- reachable_w(X, Y), neighbor(X, Y, X1, Y1), color(X1, Y1, 
 
 :- color(X, Y, C), color(X+1, Y, C), color(X, Y+1, C), color(X+1, Y+1, C), cell(X, Y), cell(X+1, Y), cell(X, Y+1), cell(X+1, Y+1).
 
-#project color/3.
-#show color/3.
+
+_drawcircle(X, Y, C) :- color(X, Y, C).
+#show _drawcircle/3.
