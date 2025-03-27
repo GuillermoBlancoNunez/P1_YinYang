@@ -1,7 +1,9 @@
 import clingo
 import sys
+import time
 
 ### Main program
+
 
 if len(sys.argv)<4:
     print("decode.py yinyang.lp domfile.lp solfile.txt")
@@ -42,5 +44,4 @@ with ctl.solve(yield_=True) as handle:
          print("")
       out.close()
       exit()
-
 

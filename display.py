@@ -2,6 +2,7 @@ import pygame
 import clingo
 import sys
 
+
 def convert_value(v):
     if v.type==clingo.TheoryTermType.Symbol:
         if v.name[0]=='"': return v.name[1:-1]
